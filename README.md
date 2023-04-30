@@ -14,7 +14,7 @@ Project Description:
     
 ## Initial Thoughts 
 
-    My initial hypothesis is that drivers of churn will be elements that cause inconvenience or increase in cost.
+    My initial hypothesis is demographic classification is correlated to churn.
    
 ## The Plan
 
@@ -72,11 +72,14 @@ Project Description:
 ## Steps to Reproduce
 
     1. Clone this repo
-    2. Acquire the data form Kaggle
+    2. Acquire the data from CodeUp, Telco_churn
     3. Put the data in the file containing the cloned repo
     4. Run notebook
     
 ## Takeaways and Conclusions
 
+Gender doesn't seem to be strongly associated with churn. There is a stronger relationship between churn and whether the customers are senior citizents, have children, and/or partners.
 
 ## Recommendations
+
+Offer discounts to senior citizens to reduce churn, and family bundle discounts to fortify the lower churn rate of those with partners and dependents.
