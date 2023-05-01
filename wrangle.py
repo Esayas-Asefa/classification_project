@@ -1,9 +1,11 @@
 import pandas as pd
 import os
+import seaborn as sns
 from sklearn.model_selection import train_test_split
-
+import matplotlib.pyplot as plt
 from termcolor import colored
-
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.ensemble import RandomForestClassifier
 
 import env
 import numpy as np
@@ -112,6 +114,58 @@ def prep_data(df):
     print(colored(f'Columns with null values: {sum_null[sum_null > 0].index}', 'red'))
     return df
 
+def split_my_data(df):
+    X = df.drop(['churn_Yes', 'tenure', 'monthly_charges', 'total_charges',
+             'phone_service_Yes', 'multiple_lines_No phone service', 
+            'multiple_lines_Yes', 'online_security_No internet service',
+       'online_security_Yes', 'online_backup_No internet service',
+       'online_backup_Yes', 'device_protection_No internet service',
+       'device_protection_Yes', 'tech_support_No internet service',
+       'tech_support_Yes', 'streaming_tv_No internet service',
+       'streaming_tv_Yes', 'streaming_movies_No internet service',
+       'streaming_movies_Yes', 'paperless_billing_Yes',
+       'contract_type_One year', 'contract_type_Two year',
+       'internet_service_type_Fiber optic', 'internet_service_type_None',
+       'payment_type_Credit card (automatic)', 'payment_type_Electronic check',
+       'payment_type_Mailed check'], axis=1)
+    Y = df.churn_Yes
+    
+    X = pd.DataFrame(X)
+    Y = pd.DataFrame(Y)
+    return X, Y
+
+def plot_gender_churn(X_train, y_train):
+    sns.barplot(x = X_train.gender_Male , y = y_train.churn_Yes)
+    # Add labels and title
+    plt.xlabel('Churn (1 = Yes, 0 = No)')
+    plt.title('Barplot of Gender and Churn')
+    # Show the plot
+    plt.show()
+    
+def plot_senior_citizen_Yes_churn(X_train, y_train):
+    sns.barplot(x = X_train.senior_citizen_Yes , y = y_train.churn_Yes)
+    # Add labels and title
+    plt.xlabel('Churn (1 = Yes, 0 = No)')
+    plt.title('Barplot of those are Senior Citizens and Churn')
+    # Show the plot
+    plt.show()
+    
+def plot_partner_Yes_churn(X_train, y_train):
+    sns.barplot(x = X_train.partner_Yes , y = y_train.churn_Yes)
+    # Add labels and title
+    plt.xlabel('Churn (1 = Yes, 0 = No)')
+    plt.title('Barplot of those who have Partners and Churn')
+    # Show the plot
+    plt.show()
+    
+def plot_dependents_Yes_churn(X_train, y_train):
+    sns.barplot(x = X_train.dependents_Yes , y = y_train.churn_Yes)
+    # Add labels and title
+    plt.xlabel('Churn (1 = Yes, 0 = No)')
+    plt.title('Barplot of those who have Dependents and Churn')
+    # Show the plot
+    plt.show()
+
 def check_nulls(df):
     return df.isnull().sum()
 
@@ -130,3 +184,18 @@ def train_validate_test_split(X_all, Y):
     X_train, X_test, y_train, y_test = train_test_split(X_all, Y, test_size=0.2, random_state=123, stratify=Y)
     X_train, X_validate, y_train, y_validate = train_test_split(X_train, y_train, test_size=0.25, random_state=123, stratify=y_train)
     return X_train, X_validate, X_test, y_train, y_validate, y_test
+
+def train_validate_accuracy_dt(X_train, y_train, X_validate, y_validate):
+    tree = DecisionTreeClassifier()
+    tree.fit(X_train, y_train)
+    tree.score(X_train, y_train)
+    tree.score(X_validate, y_validate)
+    for x in range(1,4):
+    #     print(x)
+        tree = DecisionTreeClassifier(max_depth=x)
+        tree.fit(X_train, y_train)
+        acc = tree.score(X_train, y_train)
+        val = tree.score(X_validate, y_validate)
+        print(f'for depth of {x:2}, the train accuracy is {round(acc,2)}')
+        print(f'for depth of {x:2}, the validate accuracy is {round(val,2)}')
+        print()

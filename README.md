@@ -41,33 +41,31 @@ Project Description:
 
  ## Data Dictionary
       
-| Feature | Definition |
-|:--------|:-----------|
-|tenure| How many months the customer has been a customer|
-|monthly_charges| How much the customer pays monthly|
-|Contract type ID| The total the customer has paid|
-|gender_Male| Whether the customer is male or not (0:no, 1:yes)|
-|senior_citizen_Yes| Whether the customer is a senior citizen or not 0:no, 1:yes|
-|partner_Yes| Whether the customer has a partner or not (0:no, 1:yes)|
-|dependents_Yes| Whether the customer has dependents or not (0:no, 1:yes)|
-|phone_service_Yes| Whether the customer has phone service or not (0:no, 1:yes)|
-|multiple_lines_No phone service| Whether the customer has multiple lines of service w/o phone service|
-|multiple_lines_Yes| Whether the customer has multiple lines of service or not|
-|online_security_No internet service|Whether the customer has online security w/o internet service or not|
-|online_security_Yes|Whether the customer has online security or not|
-|online_backup_No internet service|Whether the customer has online backup w/o internet service or not|
-|online_backup_Yes|Whether the customer has online backup or not|
-|device_protection_No internet service|Whether the customer has device protection w/o internet service or not|
-|device_protection_Yes|Whether the customer has device protection or not|
-|tech_support_No internet service|Whether the customer has tech support w/o internet service or not|
-|tech_support_Yes|Whether the customer has tech support or not|
-|streaming_tv_No internet service|Whether the customer has tv streaming services w/o internet service or not|
-|streaming_tv_Yes|Whether the customer has tv streaming services or not|
-|streaming_movies_No internet service|Whether the customer has movie streaming services w/o internet services or not|
-|streaming_movies_Yes|Whether the customer has movie streaming services or not|
-|paperless_billing_Yes|Whether the customer is enrolled in paperless billing or not|
-|churn_Yes|Whether the customer churned or not 0:no, 1:yes|
+# Data Dictionary
 
+| **Column**          | **Description**                                           |
+|---------------------|-----------------------------------------------------------|
+| **Customer ID**     | Customer ID                                               |
+| **Gender**          | Whether the customer is a male or a female                |
+| **SeniorCitizen**   | Whether the customer is a senior citizen or not           |
+| **Partner**         | Whether the customer has a partner or not                 |
+| **Dependents**      | Whether the customer has dependents or not                |
+| **Tenure**          | Number of months the customer has stayed with the company |
+| **PhoneService**    | Whether the customer has a phone service or not           |
+| **Multiplelines**   | Whether the customer has multiple lines or not            |
+| **InternetService** | Customer’s internet service provider                      |
+| **OnlineSecurity**  | Whether the customer has online security or not           |
+| **OnlineBackup**    | Whether the customer has online backup or not             |
+| **DeviceProtection** | Whether the customer has device protection or not         |
+| **TechSupport**     | Whether the customer has tech support or not              |
+| **StreamingTV**     | Whether the customer has streaming TV or not              |
+| **StreamingMovies** | Whether the customer has streaming movies or not          |
+| **Contract**        | The contract term of the customer                         |
+| **PaperlessBilling** | Whether the customer has paperless billing or not         |
+| **PaymentMethod**   | The customer’s payment method                             |
+| **MonthlyCharges**  | The amount charged to the customer monthly                |
+| **TotalCharges**    | The total amount charged to the customer                  |
+| **Churn**           | Whether the customer churned or not                       |
 
 ## Steps to Reproduce
 
