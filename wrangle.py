@@ -186,7 +186,7 @@ def train_validate_accuracy_dt(X_train, y_train, X_validate, y_validate):
     tree.fit(X_train, y_train)
     tree.score(X_train, y_train)
     tree.score(X_validate, y_validate)
-    baseline_accuracy = (df.churn_Yes == 0).mean().round(5)
+    #baseline_accuracy = (df.churn_Yes == 0).mean().round(5)
     for x in range(1,4):
     #     print(x)
         tree = DecisionTreeClassifier(max_depth=x)
@@ -195,14 +195,14 @@ def train_validate_accuracy_dt(X_train, y_train, X_validate, y_validate):
         val = tree.score(X_validate, y_validate)
         print(f'for depth of {x:4}, the train accuracy is {round(acc,5)}')
         print(f'for depth of {x:4}, the validate accuracy is {round(val,5)}')
-        print(f'baseline_accuracy {baseline_accuracy}')
+        #print(f'baseline_accuracy {baseline_accuracy}')
         print()
 def train_validate_accuracy_rf(X_train, y_train, X_validate, y_validate):
     tree = RandomForestClassifier()
     tree.fit(X_train, y_train)
     tree.score(X_train, y_train)
     tree.score(X_validate, y_validate)     
-    baseline_accuracy = (df.churn_Yes == 0).mean().round(5)
+    #baseline_accuracy = (df.churn_Yes == 0).mean().round(5)
     for x in range(1,5):
 #         print(x)
         tree = RandomForestClassifier(max_depth=x)
@@ -211,7 +211,7 @@ def train_validate_accuracy_rf(X_train, y_train, X_validate, y_validate):
         val = tree.score(X_validate, y_validate)
         print(f'for depth of {x:2}, the train accuracy is {round(acc,5)}')
         print(f'for depth of {x:2}, the validate accuracy is {round(val,5)}')
-        print(f'baseline_accuracy {baseline_accuracy}')
+        #print(f'baseline_accuracy {baseline_accuracy}')
         print()
         
 def split_my_data_m(df):
