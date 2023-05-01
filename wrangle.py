@@ -137,7 +137,6 @@ def split_my_data(df):
 def plot_gender_churn(X_train, y_train):
     sns.barplot(x = X_train.gender_Male , y = y_train.churn_Yes)
     # Add labels and title
-    plt.xlabel('Churn (1 = Yes, 0 = No)')
     plt.title('Barplot of Gender and Churn')
     # Show the plot
     plt.show()
@@ -145,7 +144,6 @@ def plot_gender_churn(X_train, y_train):
 def plot_senior_citizen_Yes_churn(X_train, y_train):
     sns.barplot(x = X_train.senior_citizen_Yes , y = y_train.churn_Yes)
     # Add labels and title
-    plt.xlabel('Churn (1 = Yes, 0 = No)')
     plt.title('Barplot of those are Senior Citizens and Churn')
     # Show the plot
     plt.show()
@@ -153,7 +151,6 @@ def plot_senior_citizen_Yes_churn(X_train, y_train):
 def plot_partner_Yes_churn(X_train, y_train):
     sns.barplot(x = X_train.partner_Yes , y = y_train.churn_Yes)
     # Add labels and title
-    plt.xlabel('Churn (1 = Yes, 0 = No)')
     plt.title('Barplot of those who have Partners and Churn')
     # Show the plot
     plt.show()
@@ -161,7 +158,6 @@ def plot_partner_Yes_churn(X_train, y_train):
 def plot_dependents_Yes_churn(X_train, y_train):
     sns.barplot(x = X_train.dependents_Yes , y = y_train.churn_Yes)
     # Add labels and title
-    plt.xlabel('Churn (1 = Yes, 0 = No)')
     plt.title('Barplot of those who have Dependents and Churn')
     # Show the plot
     plt.show()
@@ -190,30 +186,50 @@ def train_validate_accuracy_dt(X_train, y_train, X_validate, y_validate):
     tree.fit(X_train, y_train)
     tree.score(X_train, y_train)
     tree.score(X_validate, y_validate)
-    baseline_accuracy = (y_train.churn_Yes == 0).mean()
+    baseline_accuracy = (df.churn_Yes == 0).mean().round(5)
     for x in range(1,4):
     #     print(x)
         tree = DecisionTreeClassifier(max_depth=x)
         tree.fit(X_train, y_train)
         acc = tree.score(X_train, y_train)
         val = tree.score(X_validate, y_validate)
-        print(f'for depth of {x:4}, the train accuracy is {round(acc,4)}')
-        print(f'for depth of {x:4}, the validate accuracy is {round(val,4)}')
-        print(baseline_accuracy)
+        print(f'for depth of {x:4}, the train accuracy is {round(acc,5)}')
+        print(f'for depth of {x:4}, the validate accuracy is {round(val,5)}')
+        print(f'baseline_accuracy {baseline_accuracy}')
         print()
 def train_validate_accuracy_rf(X_train, y_train, X_validate, y_validate):
     tree = RandomForestClassifier()
     tree.fit(X_train, y_train)
     tree.score(X_train, y_train)
     tree.score(X_validate, y_validate)     
-    baseline_accuracy = (y_train.churn_Yes == 0).mean()
+    baseline_accuracy = (df.churn_Yes == 0).mean().round(5)
     for x in range(1,5):
 #         print(x)
         tree = RandomForestClassifier(max_depth=x)
         tree.fit(X_train, y_train)
         acc = tree.score(X_train, y_train)
         val = tree.score(X_validate, y_validate)
-        print(f'for depth of {x:2}, the train accuracy is {round(acc,4)}')
-        print(f'for depth of {x:2}, the validate accuracy is {round(val,4)}')
-        print(baseline_accuracy)
+        print(f'for depth of {x:2}, the train accuracy is {round(acc,5)}')
+        print(f'for depth of {x:2}, the validate accuracy is {round(val,5)}')
+        print(f'baseline_accuracy {baseline_accuracy}')
         print()
+        
+def split_my_data_m(df):
+    X_m = df.drop(['churn_Yes', 'tenure', 'monthly_charges', 'total_charges',
+             'phone_service_Yes', 'multiple_lines_No phone service', 
+            'multiple_lines_Yes', 'online_security_No internet service',
+       'online_security_Yes', 'online_backup_No internet service',
+       'online_backup_Yes', 'device_protection_No internet service',
+       'device_protection_Yes', 'tech_support_No internet service',
+       'tech_support_Yes', 'streaming_tv_No internet service',
+       'streaming_tv_Yes', 'streaming_movies_No internet service',
+       'streaming_movies_Yes', 'paperless_billing_Yes',
+       'contract_type_One year', 'contract_type_Two year',
+       'internet_service_type_Fiber optic', 'internet_service_type_None',
+       'payment_type_Credit card (automatic)',
+       'payment_type_Mailed check'], axis=1)
+    Y_m = df.churn_Yes
+    
+    X_m = pd.DataFrame(X_m)
+    Y_m = pd.DataFrame(Y_m)
+    return X_m, Y_m
